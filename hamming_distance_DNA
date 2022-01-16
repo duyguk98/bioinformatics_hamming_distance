@@ -1,0 +1,36 @@
+#specifying the variables
+FILE_PATH = "rosalind_hamm.txt"
+READ = "r"
+LINE_SPLIT = "\n"
+FIRST_DNA = 0
+SECOND_DNA = 1
+INCREASE = 1
+
+
+#reading file and returning a dictionary, our values are DNA strings here
+def read_file(): 
+    with open(FILE_PATH, READ) as file:
+        dataset = file.read().splitlines()
+        first_dna = dataset[FIRST_DNA]
+        second_dna = dataset[SECOND_DNA]
+        mutation_counts = count_mutations(first_dna, second_dna)
+
+    return mutation_counts
+
+
+def count_mutations(first_dna, second_dna):
+    mutation_counts = 0
+    for nucleotide in range(len(first_dna)):
+        if first_dna[nucleotide] != second_dna[nucleotide]:
+            mutation_counts += INCREASE
+        # if first dna's nucleotide is not equal to second dna's nucleotide we are increasing mutation count
+    return mutation_counts
+
+
+def main():
+    mutation_counts = read_file()
+    print(mutation_counts)
+
+    
+
+main()
